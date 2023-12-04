@@ -1,0 +1,14 @@
+{
+  "users": [
+    {
+      "username": "basic",
+      "password": "basic",
+      "account_level": "basic"
+    },
+    {
+      "username": "admin",
+      "password": "admin",
+      "account_level": "admin"
+    }
+  ]
+}

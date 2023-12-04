@@ -1,0 +1,49 @@
+{% extends 'template.html' %} {% block title %}{{ item.name }}{% endblock %} {%
+block head %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/styles.css') }}"
+/>
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/item.css') }}"
+/>
+{% endblock %} {% block main %}
+<div class="main">
+  <div class="product-details">
+    <div class="product-image-container">
+      <img src="{{ item.image }}" alt="{{ item.name }}" class="product-image" />
+    </div>
+    <div class="product-info">
+      <h2 class="product-name">{{ item.name }}</h2>
+      <p class="product-price"><strong>{{ item.price_formatted }}</strong></p>
+
+      <!-- Buy Now and Make an Offer Buttons -->
+      <div class="action-buttons">
+        <button class="buy-now-button">Buy it now</button>
+        <button class="offer-button">Make an offer</button>
+      </div>
+    </div>
+  </div>
+  <div class="additional-info">
+    <div class="category-box">
+      <p><strong>Brand:</strong> {{ item.brand }}</p>
+    </div>
+    <div class="category-box">
+      <p><strong>Size:</strong> {{ item.size }}</p>
+    </div>
+    <div class="category-box">
+      <p><strong>Colour:</strong> {{ item.colour }}</p>
+    </div>
+    <div class="category-box">
+      <p><strong>Location:</strong> {{ item.location }}</p>
+    </div>
+    <div class="info-box">
+      <p><strong>Description:</strong> {{ item.description }}</p>
+    </div>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='java_script/item.js') }}"></script>
+
+{% endblock %}

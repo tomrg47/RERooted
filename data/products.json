@@ -1,0 +1,102 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "userId": 101,
+      "name": "Product 1",
+      "dateListed": "NONE",
+      "image": "/static/images/product1.png",
+      "description": "this is test product 1!",
+      "price": 19.99,
+      "productState": "Sold",
+      "brand": "Burberry",
+      "size": "8",
+      "colour": "Red",
+      "location": "West London"
+    },
+    {
+      "id": 2,
+      "userId": 102,
+      "name": "Product 2",
+      "dateListed": "NONE",
+      "image": "/static/images/product1.png",
+      "description": "test product 2.",
+      "price": 29.99,
+      "productState": "Unsold",
+      "brand": "Burberry",
+      "size": "8",
+      "colour": "Red",
+      "location": "West London"
+    },
+    {
+      "id": 3,
+      "userId": 103,
+      "name": "Product 3",
+      "dateListed": "NONE",
+      "image": "/static/images/product1.png",
+      "description": "test product 3.",
+      "price": 39.99,
+      "productState": "Unsold",
+      "brand": "Burberry",
+      "size": "8",
+      "colour": "Red",
+      "location": "West London"
+    },
+    {
+      "id": 4,
+      "userId": 104,
+      "name": "Product 4",
+      "dateListed": "NONE",
+      "image": "/static/images/product1.png",
+      "description": "test product 4.",
+      "price": 49.99,
+      "productState": "Sold",
+      "brand": "Burberry",
+      "size": "8",
+      "colour": "Red",
+      "location": "West London"
+    },
+    {
+      "id": 5,
+      "userId": 105,
+      "name": "Product 5",
+      "dateListed": "NONE",
+      "image": "/static/images/product1.png",
+      "description": "test product 4.",
+      "price": 49.99,
+      "productState": "Sold",
+      "brand": "Burberry",
+      "size": "8",
+      "colour": "Blue",
+      "location": "West London"
+    },
+    {
+      "id": 6,
+      "userId": 106,
+      "name": "Product 6",
+      "dateListed": "NONE",
+      "image": "/static/images/product1.png",
+      "description": "test product 4.",
+      "price": 49.99,
+      "productState": "Sold",
+      "brand": "Burberry",
+      "size": "8",
+      "colour": "Blue",
+      "location": "West London"
+    },
+    {
+      "id": 7,
+      "userId": 106,
+      "name": "Product 7",
+      "dateListed": "NONE",
+      "image": "/static/images/product1.png",
+      "description": "test product 4.",
+      "price": 49.99,
+      "productState": "Sold",
+      "brand": "Burberry",
+      "size": "8",
+      "colour": "Blue",
+      "location": "West London"
+    }
+  ]
+}

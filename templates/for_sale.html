@@ -1,0 +1,57 @@
+{% extends 'template.html' %} {% block title %}Sell an item{% endblock %} {%
+block head %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/styles.css') }}"
+/>
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/for_sale.css') }}"
+/>
+{% endblock %}
+<section class="sell-layout">
+  <div class="form-container">
+    <h1>Add Item for Sale</h1>
+    <form
+      id="sellForm"
+      action="/sell"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+      <!-- Left side - Input boxes for other info -->
+      <div class="left-side">
+        <label for="productName">Product Name:</label>
+        <input type="text" id="productName" name="productName" required />
+
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" step="0.01" required />
+
+        <label for="size">Size:</label>
+        <input type="text" id="size" name="size" />
+
+        <label for="brand">Brand:</label>
+        <input type="text" id="brand" name="brand" />
+
+        <label for="color">Color:</label>
+        <input type="text" id="color" name="color" />
+
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" />
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="4"></textarea>
+      </div>
+
+      <!-- Right side - Upload photo section -->
+      <div class="right-side">
+        <label for="photo">Upload Photo:</label>
+        <input type="file" id="photo" name="photo" accept="image/*" required />
+        <img id="preview" alt="Preview Image" />
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script src="{{ url_for('static', filename='java_script/sell.js') }}"></script>
+</section>

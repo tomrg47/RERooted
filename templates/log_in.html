@@ -1,0 +1,62 @@
+{% extends 'template.html' %} {% block title %}Login{% endblock %} {% block head
+%}
+<link rel="stylesheet" href="static/css/styles.css" />
+<link rel="stylesheet" href="static/css/log_in.css" />
+<script src="{{ url_for('static', filename='js/auth.js') }}"></script>
+{% endblock %} {% block main %}
+<div class="container">
+  <img
+    src="{{ url_for('static', filename='/images/RR.png') }}"
+    alt="green rerooted logo"
+    width="400"
+    height="200"
+  />
+  <form id="loginForm" action="/login" method="POST">
+    <!-- ... Login form ... -->
+    <h2>Login</h2>
+    <form action="/login" method="POST">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required /><br /><br />
+
+      <label for="password">Password:</label>
+      <input
+        type="p assword"
+        id="password"
+        name="password"
+        required
+      /><br /><br />
+    </form>
+    <hr />
+  </form>
+  <form id="signupForm" action="/signup" method="POST" style="display: none">
+    <!-- ... Signup form ... -->
+    <h2>Sign Up</h2>
+    <form action="/signup" method="POST">
+      <label for="new_username">New Username:</label>
+      <input
+        type="text"
+        id="new_username"
+        name="new_username"
+        required
+      /><br /><br />
+
+      <label for="new_password">New Password:</label>
+      <input
+        type="password"
+        id="new_password"
+        name="new_password"
+        required
+      /><br /><br />
+
+      <input type="submit" value="Sign Up" />
+    </form>
+  </form>
+  <div class="toggle">
+    <input type="radio" id="loginToggle" name="authToggle" checked />
+    <label for="loginToggle">Login</label>
+    <input type="radio" id="signupToggle" name="authToggle" />
+    <label for="signupToggle"> Sign Up</label>
+  </div>
+</div>
+
+{% endblock %}
