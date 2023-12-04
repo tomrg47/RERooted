@@ -6,7 +6,7 @@ block head %}
 />
 <link
   rel="stylesheet"
-  href="{{ url_for('static', filename='css/for_sale.css') }}"
+  href="{{ url_for('static', filename='css/sale.css') }}"
 />
 {% endblock %}
 <section class="sell-layout">
@@ -14,7 +14,7 @@ block head %}
     <h1>Add Item for Sale</h1>
     <form
       id="sellForm"
-      action="/sell"
+      action="/list_item"
       method="POST"
       enctype="multipart/form-data"
     >
@@ -53,5 +53,5 @@ block head %}
     </form>
   </div>
 
-  <script src="{{ url_for('static', filename='java_script/sell.js') }}"></script>
+  <script src="{{ url_for('static', filename='java_script/sale.js') }}"></script>
 </section>

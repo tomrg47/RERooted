@@ -79,5 +79,5 @@ nav ul li {
 }
 
 .footer {
-  height: 25px;
+  max-height: 10px;
 }

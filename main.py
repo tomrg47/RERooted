@@ -1,5 +1,5 @@
 import json,os
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, jsonify, render_template, request,redirect,url_for
 
 
 app = Flask(__name__)
@@ -62,16 +62,25 @@ def login():
             return "Invalid credentials. Please try again."
     return render_template('log_in.html')
 
+
+def create_user(username, password):
+    users_data = load_users()
+    new_user = {
+        "username": username,
+        "password": password,
+        "account_level": "basic"  # You can set a default account level here
+    }
+    users_data['users'].append(new_user)
+
+
+
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
         new_username = request.form['new_username']
-        request.form['new_password']
+        new_password = request.form['new_password']
 
-        # Here, you'd typically add the new user to your database or user repository
-        # For this example, let's assume you have a function called `create_user`
-        # This is where you'd handle the creation of the new user account
-        # create_user(new_username, new_password)
+        create_user(new_username, new_password)
 
         return f"Account created for {new_username}!"
 
@@ -97,14 +106,15 @@ def item(item_id):
       return render_template('error.html', message="Product not found")
 
 # Handle form submission to add a new product
-@app.route('/sell', methods=['POST'])
-def sell():
-    # Access form data using request.form and request.files
+@app.route('/list_item', methods=['GET','POST'])
+def list_item():
+  if request.method == 'POST':
+   # Access form data using request.form and request.files
     product_name = request.form['productName']
     price = float(request.form['price'])
     size = request.form['size']
     brand = request.form['brand']
-    color = request.form['color']
+    colour = request.form['colour']
     location = request.form['location']
     description = request.form['description']
 
@@ -116,28 +126,35 @@ def sell():
 
     # Save the uploaded photo with a unique filename
     photo_filename = f"product_{new_product_id}.jpg"  # You can use a more sophisticated approach for filenames
-    photo_path = os.path.join('static', 'images', 'uploads', photo_filename)
+    photo_path = os.path.join('static', 'images', photo_filename)
     photo_file.save(photo_path)
+    
+    # Get the current date and time
+    upload_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     # Add the new product to the products list
     new_product = {
         'id': new_product_id,
         'name': product_name,
+        'dateListed': upload_date,
+        'image': f'images/uploads/{photo_filename}',
+        'description': description,
         'price': price,
+        'productState': "Available",
         'size': size,
         'brand': brand,
-        'color': color,
-        'location': location,
-        'description': description,
-        'image': f'images/uploads/{photo_filename}'  # Update with the correct path to the uploaded image
+        'colour': colour,
+        'location': location
     }
 
     products.append(new_product)
 
     # Save the updated products list to the JSON file
     save_product_data(products)
-
-    return redirect(url_for('get_products'))
+  
+    return render_template('for_sale.html', product = new_product)
+  else:
+    return render_template('for_sale.html')
   
 if __name__ == '__main__': 
   app.run(host='0.0.0.0', port=8080, debug=True)
