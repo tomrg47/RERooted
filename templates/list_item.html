@@ -6,15 +6,17 @@ block head %}
 />
 <link
   rel="stylesheet"
-  href="{{ url_for('static', filename='css/for_sale.css') }}"
+  href="{{ url_for('static', filename='css/list_item.css') }}"
 />
 {% endblock %}
+
+{% block main %}
 <section class="sell-layout">
   <div class="form-container">
     <h1>Add Item for Sale</h1>
     <form
       id="sellForm"
-      action="/sell"
+      action="/list_item"
       method="POST"
       enctype="multipart/form-data"
     >
@@ -32,8 +34,8 @@ block head %}
         <label for="brand">Brand:</label>
         <input type="text" id="brand" name="brand" />
 
-        <label for="color">Color:</label>
-        <input type="text" id="color" name="color" />
+        <label for="colour">Colour:</label>
+        <input type="text" id="colour" name="colour" />
 
         <label for="location">Location:</label>
         <input type="text" id="location" name="location" />
@@ -46,12 +48,14 @@ block head %}
       <div class="right-side">
         <label for="photo">Upload Photo:</label>
         <input type="file" id="photo" name="photo" accept="image/*" required />
-        <img id="preview" alt="Preview Image" />
+        <img id="preview" alt="Image Pre" />
       </div>
 
       <button type="submit">Submit</button>
     </form>
   </div>
 
-  <script src="{{ url_for('static', filename='java_script/sell.js') }}"></script>
+  <script src="{{ url_for('static', filename='java_script/list_item.js') }}"></script>
 </section>
+
+{% endblock %}

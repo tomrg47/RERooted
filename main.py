@@ -1,4 +1,4 @@
-import json,os
+import json,os, datetime
 from flask import Flask, jsonify, render_template, request
 
 
@@ -97,47 +97,57 @@ def item(item_id):
       return render_template('error.html', message="Product not found")
 
 # Handle form submission to add a new product
-@app.route('/sell', methods=['POST'])
-def sell():
-    # Access form data using request.form and request.files
-    product_name = request.form['productName']
-    price = float(request.form['price'])
-    size = request.form['size']
-    brand = request.form['brand']
-    color = request.form['color']
-    location = request.form['location']
-    description = request.form['description']
+@app.route('/list_item', methods=['GET','POST'])
+def list_item():
+    if request.method == 'POST':
+        # Access form data using request.form and request.files
+        product_name = request.form['productName']
+        price = float(request.form['price'])
+        size = request.form['size']
+        brand = request.form['brand']
+        colour = request.form['colour']
+        location = request.form['location']
+        description = request.form['description']
 
-    # Assuming 'photo' is the name attribute of the file input
-    photo_file = request.files['photo']
+        # Assuming 'photo' is the name attribute of the file input
+        photo_file = request.files['photo']
 
-    # Generate a unique ID for the new product
-    new_product_id = len(products) + 1
+        # Generate a unique ID for the new product
+        new_product_id = len(products) + 1
 
-    # Save the uploaded photo with a unique filename
-    photo_filename = f"product_{new_product_id}.jpg"  # You can use a more sophisticated approach for filenames
-    photo_path = os.path.join('static', 'images', 'uploads', photo_filename)
-    photo_file.save(photo_path)
+        # Save the uploaded photo with a unique filename
+        photo_filename = f"product_{new_product_id}.jpg" 
+        photo_path = os.path.join('static', 'images', photo_filename)
+        photo_file.save(photo_path)
 
-    # Add the new product to the products list
-    new_product = {
-        'id': new_product_id,
-        'name': product_name,
-        'price': price,
-        'size': size,
-        'brand': brand,
-        'color': color,
-        'location': location,
-        'description': description,
-        'image': f'images/uploads/{photo_filename}'  # Update with the correct path to the uploaded image
-    }
+        #upload_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-    products.append(new_product)
+        # Add the new product to the products list
+        new_product = {
+            'id': new_product_id,
+            'userId': 'placeholder',
+            'name': product_name,
+            'dateListed': 'placeholder',
+            'image': f'static/images/uploads/{photo_filename}',
+            'description': description,
+            'price': price,
+            'productState': False,
+            'brand': brand,
+            'size': size,
+            'colour': colour,
+            'location': location
+        }
 
-    # Save the updated products list to the JSON file
-    save_product_data(products)
+        products.append(new_product)
 
-    return redirect(url_for('get_products'))
+        # Save the updated products list to the JSON file
+        save_product_data(products)
+
+        return render_template('list_item.html', product = new_product)
+    else:
+        return render_template('list_item.html')
+
+    
   
 if __name__ == '__main__': 
   app.run(host='0.0.0.0', port=8080, debug=True)
