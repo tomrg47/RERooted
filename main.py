@@ -1,8 +1,10 @@
-import json,os, datetime
-from flask import Flask, jsonify, render_template, request
+import json,os
+#from datetime import datetime
+from flask import Flask, jsonify, render_template, request, session
 
 
 app = Flask(__name__)
+app.secret_key = 'group_15'
 
 # Load user data from the JSON file
 def load_users():
@@ -14,6 +16,8 @@ def load_users():
     with open(abs_file_path, 'r') as file:
         users_data = json.load(file)
         return users_data['users']
+
+users = load_users()
 
 # Load product data from the JSON file
 def load_product_data():
@@ -35,6 +39,7 @@ def save_product_data(products):
     abs_file_path = os.path.join(script_dir, relative_path)
     with open(abs_file_path, 'w') as file:
         json.dump({'products': products}, file, indent=2)
+    
 
 # Verify login credentials
 def verify_login(username, password):
@@ -43,6 +48,13 @@ def verify_login(username, password):
         if user['username'] == username and user['password'] == password:
             return True, user['account_level']
     return False, None
+
+def save_users_data(users):
+    script_dir = os.path.dirname(__file__)
+    relative_path = 'data/users.json'
+    abs_file_path = os.path.join(script_dir, relative_path)
+    with open(abs_file_path, 'w') as file:
+        json.dump({'users': users}, file, indent=2)
 
 @app.route('/')
 @app.route('/home')
@@ -56,8 +68,11 @@ def login():
         password = request.form['password']
         is_valid, account_level = verify_login(username, password)
         if is_valid:
-            # Perform actions based on account level (redirect to different pages, etc.)
-            return render_template('home.html')
+            session['is_authenticated'] = True
+            # Optionally, you can store additional user-related data in the session
+            session['username'] = username
+            session['account_level'] = account_level
+            return render_template('home.html', is_authenticated=True)
         else:
             return "Invalid credentials. Please try again."
     return render_template('log_in.html')
@@ -65,19 +80,37 @@ def login():
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
+        # Access form data using request.form and request.files
         new_username = request.form['new_username']
-        request.form['new_password']
+        new_password = request.form['new_password']
 
-        # Here, you'd typically add the new user to your database or user repository
-        # For this example, let's assume you have a function called `create_user`
-        # This is where you'd handle the creation of the new user account
-        # create_user(new_username, new_password)
+        # Generate a unique ID for the user
+        new_user_id = "basic_" + str(len(users) + 1)
+
+        # Add the new user to the users list
+        new_user = {
+            "username": new_username,
+            "password": new_password,
+            "account_level": "basic",
+            "user_id": new_user_id
+        }
+
+        users.append(new_user)
+
+        save_users_data(users)
 
         return f"Account created for {new_username}!"
 
     # If it's a GET request or the form was not submitted, render the signup form
     return render_template('log_in.html')
 
+@app.route('/view_profile')
+def view_profile():
+    # Assume you have user data stored in the session after login
+    # You may need to adjust this based on your actual user management logic
+    user_data = session.get('user_data', {})
+
+    return render_template('profile.html', user=user_data)
 
 
 @app.route('/get_products')
@@ -125,10 +158,10 @@ def list_item():
         # Add the new product to the products list
         new_product = {
             'id': new_product_id,
-            'userId': 'placeholder',
+            'userId': 'upload_date',
             'name': product_name,
             'dateListed': 'placeholder',
-            'image': f'static/images/uploads/{photo_filename}',
+            'image': f'static/images/{photo_filename}',
             'description': description,
             'price': price,
             'productState': False,
