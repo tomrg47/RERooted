@@ -21,7 +21,9 @@ nav ul li {
   display: inline;
   margin-right: 20px;
 }
-
+.layout {
+  height: 100%;
+}
 .main {
   max-width: 2000px;
   margin: 20px auto;
@@ -29,6 +31,7 @@ nav ul li {
   background-color: #faf6ed;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 550px;
 }
 .header {
   display: flex;
@@ -79,5 +82,5 @@ nav ul li {
 }
 
 .footer {
-  max-height: 10px;
+  max-height: min-content;
 }

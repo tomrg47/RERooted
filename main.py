@@ -99,7 +99,7 @@ def signup():
 
         save_users_data(users)
 
-        return f"Account created for {new_username}!"
+        return render_template("home.html",is_authenticated=True)
 
     # If it's a GET request or the form was not submitted, render the signup form
     return render_template('log_in.html')

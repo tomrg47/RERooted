@@ -1,13 +1,11 @@
-/* Add your styling for the profile page here */
 .profile-container {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-  }
-  
-  .profile-left,
-  .profile-right {
-    width: 48%;
-  }
-  
-  /* Add more styling as needed */
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  height: 60%;
+}
+
+.profile-left,
+.profile-right {
+  width: 48%;
+}
