@@ -1,0 +1,50 @@
+{% extends 'template.html' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+  <script src="{{ url_for('static', filename='java_script/profile.js') }}"></script>
+{% endblock %}
+
+{% block main %}
+  <div class="profile-container">
+    <div class="profile-left">
+      <div class="profile-picture">
+        <img id="profile-image" src="{{ user.profile_picture }}" alt="Profile Picture">
+        <input type="file" id="choose-photo" accept="image/*">
+      </div>
+      <div class="about-you">
+        <h3>About You</h3>
+        <textarea id="about-you-text">{{ user.about_you }}</textarea>
+      </div>
+      <div class="location">
+        <h3>Location</h3>
+        <input type="text" id="location-input" value="{{ user.location }}">
+      </div>
+      <div class="language">
+        <h3>Language</h3>
+        <input type="text" id="language-input" value="{{ user.language }}">
+      </div>
+    </div>
+
+    <div class="profile-right">
+      <div class="account-settings">
+        <h2>Account Settings</h2>
+        <div class="email-settings">
+          <h3>Email</h3>
+          <input type="text" id="email-input" value="{{ user.email }}">
+          <button onclick="changeEmail()">Change Email</button>
+        </div>
+        <div class="password-settings">
+          <h3>Password</h3>
+          <button onclick="changePassword()">Change Password</button>
+        </div>
+        <div class="delete-account">
+          <h3>Delete Account</h3>
+          <button onclick="deleteAccount()">Delete Account</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

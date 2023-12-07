@@ -3,12 +3,26 @@
     {
       "username": "basic",
       "password": "basic",
-      "account_level": "basic"
+      "account_level": "basic",
+      "user_id": "basic_1"
     },
     {
       "username": "admin",
       "password": "admin",
-      "account_level": "admin"
+      "account_level": "admin",
+      "user_id": "admin_1"
+    },
+    {
+      "username": "test",
+      "password": "test",
+      "account_level": "basic",
+      "user_id": 3
+    },
+    {
+      "username": "test2",
+      "password": "test2",
+      "account_level": "basic",
+      "user_id": "basic_ 4"
     }
   ]
 }

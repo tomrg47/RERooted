@@ -2,7 +2,7 @@
 %}
 <link rel="stylesheet" href="static/css/styles.css" />
 <link rel="stylesheet" href="static/css/log_in.css" />
-<script src="{{ url_for('static', filename='js/auth.js') }}"></script>
+<script src="{{ url_for('static', filename='java_script/login.js') }}"></script>
 {% endblock %} {% block main %}
 <div class="container">
   <img
@@ -20,11 +20,12 @@
 
       <label for="password">Password:</label>
       <input
-        type="p assword"
+        type="text"
         id="password"
         name="password"
         required
       /><br /><br />
+      <input type="submit" value="Log In" />
     </form>
     <hr />
   </form>
