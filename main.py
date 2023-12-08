@@ -166,6 +166,7 @@ def list_item():
         products.append(new_product)
 
         # Save the updated products list to the JSON file
+        
         save_product_data(products)
 
         return render_template('list_item.html', product = new_product)

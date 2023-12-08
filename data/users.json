@@ -17,18 +17,6 @@
       "password": "test",
       "account_level": "basic",
       "user_id": "basic_3"
-    },
-    {
-      "username": "test2",
-      "password": "test2",
-      "account_level": "basic",
-      "user_id": "basic_ 4"
-    },
-    {
-      "username": "tom",
-      "password": "tom",
-      "account_level": "basic",
-      "user_id": "basic_5"
     }
   ]
 }
