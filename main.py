@@ -104,14 +104,6 @@ def signup():
     # If it's a GET request or the form was not submitted, render the signup form
     return render_template('log_in.html')
 
-@app.route('/view_profile')
-def view_profile():
-    # Assume you have user data stored in the session after login
-    # You may need to adjust this based on your actual user management logic
-    user_data = session.get('user_data', {})
-
-    return render_template('profile.html', user=user_data)
-
 
 @app.route('/get_products')
 def get_products():
