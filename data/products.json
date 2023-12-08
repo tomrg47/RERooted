@@ -98,20 +98,6 @@
       "size": "8",
       "colour": "Blue",
       "location": "West London"
-    },
-    {
-      "id": 8,
-      "userId": "2023-12-06 21:51:47",
-      "name": "test entry",
-      "dateListed": "placeholder",
-      "image": "/static/images/product_8.jpg",
-      "description": "test yes woo",
-      "price": 9.99,
-      "productState": false,
-      "brand": "Gucci",
-      "size": "10",
-      "colour": "Yellow",
-      "location": "Liverpool"
     }
   ]
 }
