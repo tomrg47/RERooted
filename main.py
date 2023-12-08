@@ -2,7 +2,6 @@ import json,os
 #from datetime import datetime
 from flask import Flask, jsonify, render_template, request, session
 
-
 app = Flask(__name__)
 app.secret_key = 'group_15'
 
